@@ -15,6 +15,10 @@
 FactoryGirl.define do
   factory :trip do
     title "MyString"
+    leader 1
+    price 50
+    start_date Date.today
+    end_date Date.today + 3
   end
 
 end

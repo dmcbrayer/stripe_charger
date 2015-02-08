@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "trips/edit", :type => :view do
   before(:each) do
-    @trip = assign(:trip, Trip.create!(
-      :title => "MyString"
-    ))
+    @trip = FactoryGirl.create(:trip)
   end
 
   it "renders the edit trip form" do

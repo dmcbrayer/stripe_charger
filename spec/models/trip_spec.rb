@@ -15,5 +15,17 @@
 require 'rails_helper'
 
 RSpec.describe Trip, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+	before do
+		@trip = FactoryGirl.create(:trip)
+	end
+
+	subject {@trip}
+
+	it {should respond_to(:title)}
+	it {should respond_to(:leader)}
+	it {should respond_to(:price)}
+	it {should respond_to(:start_date)}
+	it {should respond_to(:end_date)}
+
 end
