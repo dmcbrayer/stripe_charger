@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, class: "form-control" %>
   </div>
 
 
