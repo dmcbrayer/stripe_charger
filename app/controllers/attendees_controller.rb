@@ -19,9 +19,11 @@ class AttendeesController < ApplicationController
   def create
     @attendee = @trip.attendees.create(attendee_params)
 
+
     respond_to do |format|
       if @attendee.save
         flash[:success] = "Attendee was successfully saved."
+        @attendee.charge_stripe(@trip.price, params)
         format.html { redirect_to root_url}
       else
         flash[:danger] = "Attendee could not be saved"
