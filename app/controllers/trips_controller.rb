@@ -6,6 +6,7 @@ class TripsController < ApplicationController
   end
 
   def show
+    @leader = Leader.find(@trip.leader)
   end
 
   def new

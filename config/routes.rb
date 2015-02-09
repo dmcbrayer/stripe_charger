@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :leaders
+
   root to: 'trips#index'
 
   resources :trips do
