@@ -20,9 +20,11 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        flash[:success] = 'Trip was successfully created.'
+        format.html { redirect_to @trip}
         format.json { render :show, status: :created, location: @trip }
       else
+        flash[:danger] = 'Trip could not be created.'
         format.html { render :new }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -32,9 +34,11 @@ class TripsController < ApplicationController
   def update
     respond_to do |format|
       if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        flash[:success] = 'Trip was successfully updated.'
+        format.html { redirect_to @trip }
         format.json { render :show, status: :ok, location: @trip }
       else
+        flash[:danger] = 'Trip could not be updated.'
         format.html { render :edit }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -44,7 +48,8 @@ class TripsController < ApplicationController
   def destroy
     @trip.destroy
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      flash[:success] = 'Trip was successfully destroyed.' 
+      format.html { redirect_to trips_url}
       format.json { head :no_content }
     end
   end

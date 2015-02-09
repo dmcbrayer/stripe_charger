@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
+
   root to: 'trips#index'
 
-  resources :trips
+  resources :trips do
+    resources :attendees
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
