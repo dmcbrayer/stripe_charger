@@ -16,7 +16,7 @@ require 'rails_helper'
 
 RSpec.describe Trip, :type => :model do
 
-	before(:each) do
+	before do
 		@trip = FactoryGirl.create(:trip)
 	end
 
@@ -24,18 +24,29 @@ RSpec.describe Trip, :type => :model do
 
 		subject {@trip}
 
-		it {should respond_to(:title)}
-		it {should respond_to(:leader)}
-		it {should respond_to(:price)}
-		it {should respond_to(:start_date)}
-		it {should respond_to(:end_date)}
+		it {is_expected.to respond_to(:title)}
+		it {is_expected.to respond_to(:leader)}
+		it {is_expected.to respond_to(:price)}
+		it {is_expected.to respond_to(:start_date)}
+		it {is_expected.to respond_to(:end_date)}
 
-		it {should be_valid}
+		it {is_expected.to be_valid}
 	end
 
 	describe "when title is blank" do
-		before {@trip.title = ""}
+		before {@trip.title = " "}
 		it {is_expected.to_not be_valid}
 	end
+
+	describe "when there is no leader" do
+		before {@trip.leader = nil}
+		it {is_expected.to_not be_valid}
+	end
+
+	describe "when price is blank" do
+		before {@trip.price = " "}
+		it {is_expected.to_not be_valid}
+	end
+
 	
 end
