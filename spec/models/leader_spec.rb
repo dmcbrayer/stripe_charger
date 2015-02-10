@@ -17,8 +17,10 @@ RSpec.describe Leader, :type => :model do
 	end
 
 	describe "when name is blank" do
-		before {@leader.name = ""}
-		it {is_expected.to_not be_valid}
+		it "should be invalid" do
+			@leader.name = ""
+			expect(@leader).not_to be_valid
+		end
 	end
 
 	
@@ -46,10 +48,12 @@ RSpec.describe Leader, :type => :model do
 	  end
 
 	  describe "when email is blank" do
-			before {@leader.email = ""}
-			it {is_expected.to_not be_valid}
+			it "should be invalid" do
+				@leader.email = ""
+				expect(@leader).not_to be_valid
+			end
 		end
-		
+
 	end
 
 

@@ -16,7 +16,7 @@ require 'rails_helper'
 
 RSpec.describe Trip, :type => :model do
 
-	before do
+	before(:each) do
 		@trip = FactoryGirl.create(:trip)
 	end
 
@@ -34,18 +34,25 @@ RSpec.describe Trip, :type => :model do
 	end
 
 	describe "when title is blank" do
-		before {@trip.title = " "}
-		it {is_expected.to_not be_valid}
+
+		it "should be invalid" do
+			@trip.title = " "
+			expect(@trip).not_to be_valid
+		end
 	end
 
 	describe "when there is no leader" do
-		before {@trip.leader = nil}
-		it {is_expected.to_not be_valid}
+		it "should be invalid" do
+			@trip.leader = nil
+			expect(@trip).not_to be_valid
+		end
 	end
 
 	describe "when price is blank" do
-		before {@trip.price = " "}
-		it {is_expected.to_not be_valid}
+		it "should be invalid" do
+			@trip.price = " "
+			expect(@trip).not_to be_valid
+		end
 	end
 
 	
