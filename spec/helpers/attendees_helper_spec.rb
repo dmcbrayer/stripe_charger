@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe AttendeeHelper, :type => :helper do
+RSpec.describe AttendeesHelper, :type => :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

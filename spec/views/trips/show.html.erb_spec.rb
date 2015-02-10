@@ -8,7 +8,6 @@ RSpec.describe "trips/show", :type => :view do
   end
 
   it "renders attributes in <p>" do
-    render
-    expect(rendered).to match(/Title/)
+    pending("Add something meaningful")
   end
 end
