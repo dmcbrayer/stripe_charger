@@ -14,4 +14,6 @@
 
 class Trip < ActiveRecord::Base
 	has_many :attendees
+
+	validates :title, presence: true
 end

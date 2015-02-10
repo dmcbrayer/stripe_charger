@@ -1,6 +1,7 @@
 class Attendee < ActiveRecord::Base
 	belongs_to :trip
 
+  validates :name, presence: true
 
 	def charge_stripe(amount, params)
 
