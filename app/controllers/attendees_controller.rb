@@ -18,6 +18,7 @@ class AttendeesController < ApplicationController
 
   def create
     @attendee = @trip.attendees.create(attendee_params)
+    @attendee.email = params[:stripeEmail]
 
 
     respond_to do |format|

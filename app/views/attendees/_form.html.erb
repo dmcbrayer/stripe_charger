@@ -17,40 +17,19 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :phone %><br>
     <%= f.text_field :phone, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <label>
-      <span>Card Number</span>
-      <input type="text" size="20" data-stripe="number"/>
-    </label>
-  </div>
+  <script
+    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+    data-key="pk_test_To6xtnnLr2Ns3JUAwb5RkDK8"
+    data-amount="#{@trip.price}"
+    data-name="Ventura"
+    data-description="Ventura trip"
+    data-currency="usd"
+    data-label="Complete Registration">
+  </script>
 
-  <div class="form-group">
-    <label>
-      <span>CVC</span>
-      <input type="text" size="4" data-stripe="cvc"/>
-    </label>
-  </div>
-
-  <div class="form-group">
-    <label>
-      <span>Expiration (MM/YYYY)</span>
-      <input type="text" size="2" data-stripe="exp-month"/>
-    </label>
-    <span> / </span>
-    <input type="text" size="4" data-stripe="exp-year"/>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 
 <% end %>
