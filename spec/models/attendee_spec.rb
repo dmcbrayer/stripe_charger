@@ -34,8 +34,48 @@ RSpec.describe Attendee, :type => :model do
 	end
 
 	describe "when name is blank" do
-		before {@attendee.name = ""}
-		it {is_expected.to_not be_valid}
+		it "should be invalid" do
+			@attendee.name = ""
+			expect(@attendee).not_to be_valid
+		end
+	end
+
+	describe "when email is blank" do
+		it "should be invalid" do
+			@attendee.email = ""
+			expect(@attendee).not_to be_valid
+		end
+	end
+
+	describe "Stripe charging" do
+		let(:stripe_helper) { StripeMock.create_test_helper }
+	  before(:each) { StripeMock.start }
+	  after(:each) { StripeMock.stop }
+
+		describe "when card information is valid" do
+
+			it "creates a Stripe customer" do
+				customer = Stripe::Customer.create({
+		      email: 'johnny@appleseed.com',
+		      card: stripe_helper.generate_card_token
+		    })
+		    expect(customer.email).to eq('johnny@appleseed.com')
+		    expect{customer}.to_not raise_error
+			end
+
+			it "charges the stripe card" do
+		    charge = Stripe::Charge.create(
+		      card: stripe_helper.generate_card_token,
+		      amount: 500,
+		      description: 'Ventura trip',
+		      currency: 'usd'
+		    )
+		    expect{charge}.to_not raise_error
+			end
+		end
+
+		describe "when card information is invalid" do
+		end
 	end
 
 	

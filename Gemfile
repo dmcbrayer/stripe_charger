@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'faker'
+  gem 'stripe-ruby-mock', '~> 2.0.2', :require => 'stripe_mock'
 end
 
 group :development do
