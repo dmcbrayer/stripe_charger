@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :leaders
+
+
+  resources :leaders, only: [:index, :show]
 
   root to: 'trips#index'
 
-  resources :trips do
+  resources :trips, only: [:index, :show] do
     resources :attendees
   end
 

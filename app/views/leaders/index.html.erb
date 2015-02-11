@@ -15,8 +15,6 @@
         <td><%= leader.name %></td>
         <td><%= leader.email %></td>
         <td><%= link_to 'Show', leader %></td>
-        <td><%= link_to 'Edit', edit_leader_path(leader) %></td>
-        <td><%= link_to 'Destroy', leader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +22,3 @@
 
 <br>
 
-<%= link_to 'New Leader', new_leader_path %>
