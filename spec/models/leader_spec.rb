@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: leaders
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  email      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe Leader, :type => :model do
