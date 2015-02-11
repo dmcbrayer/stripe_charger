@@ -22,7 +22,6 @@ RSpec.describe Leader, :type => :model do
 			expect(@leader).not_to be_valid
 		end
 	end
-
 	
 	context "email validations" do
 
