@@ -31,6 +31,11 @@ class AttendeesController < ApplicationController
         format.html { render :new }
       end
     end
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to trips_path
+      
   end
 
   def update

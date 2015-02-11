@@ -13,6 +13,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'stripe'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development, :test do

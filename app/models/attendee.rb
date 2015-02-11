@@ -18,8 +18,5 @@ class Attendee < ActiveRecord::Base
       currency: 'usd'
     )
 
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to trips_path
   end
 end
