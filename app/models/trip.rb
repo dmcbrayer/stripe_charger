@@ -18,4 +18,6 @@ class Trip < ActiveRecord::Base
 	validates :title, presence: true
 	validates :leader, presence: true
 	validates :price, presence: true
+
+	default_scope -> { order(:start_date => :asc) }
 end

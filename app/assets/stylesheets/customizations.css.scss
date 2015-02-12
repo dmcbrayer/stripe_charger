@@ -1,11 +1,13 @@
 //Need to define variables before the import
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 
-$font-family-sans-serif:          'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-sans-serif:          'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $navbar-height:                   60px;
 $navbar-default-brand-color:      #c0392b;
+$navbar-default-color:            #777;
+$navbar-default-bg:               #FFFFFF;
 $brand-primary:                   #c0392b;
 $grayLight:                       #bdc3c7;
 $link-color:                      $brand-primary;
@@ -112,6 +114,8 @@ a {
 .navbar {
 
 	-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
+  border-left: none;
+  border-right: none;
 }
 
 .panel {
