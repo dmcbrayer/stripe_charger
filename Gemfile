@@ -15,6 +15,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'unicorn'
 
 group :production do
   gem 'pg'
