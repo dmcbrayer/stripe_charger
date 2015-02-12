@@ -27,7 +27,7 @@ class AttendeesController < ApplicationController
         @attendee.charge_stripe(@trip.price, params)
         format.html { redirect_to root_url}
       else
-        flash[:danger] = "Attendee could not be saved"
+        flash.now[:danger] = "Attendee could not be saved"
         format.html { render :new }
       end
     end

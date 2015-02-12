@@ -19,6 +19,8 @@ class Attendee < ActiveRecord::Base
 
 	def charge_stripe(amount, params)
 
+    amount_in_cents = amount*100
+
 		customer = Stripe::Customer.create(
       description: "Ventura Customer",
       email: params[:email],
@@ -27,7 +29,7 @@ class Attendee < ActiveRecord::Base
 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: amount,
+      amount: amount_in_cents,
       description: 'Ventura trip',
       currency: 'usd'
     )

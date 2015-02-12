@@ -27,10 +27,15 @@ RSpec.describe Attendee, :type => :model do
 		it {is_expected.to respond_to(:name)}
 		it {is_expected.to respond_to(:email)}
 		it {is_expected.to respond_to(:phone)}
+		it {is_expected.to respond_to(:paid)}
 		it {is_expected.to respond_to(:trip_id)}
 
 		it {is_expected.to be_valid}
 
+	end
+
+	describe "paid should default to false" do
+		expect(@attendee.paid).to eq(false)
 	end
 
 	describe "when name is blank" do
@@ -76,6 +81,7 @@ RSpec.describe Attendee, :type => :model do
 
 		describe "when card information is invalid" do
 		end
+		
 	end
 
 	
