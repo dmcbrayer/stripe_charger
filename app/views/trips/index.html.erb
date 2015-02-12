@@ -15,7 +15,7 @@
     <% @trips.each do |trip| %>
       <tr>
         <td><%= link_to trip.title, trip %></td>
-        <td><%= trip.price %></td>
+        <td><%= number_to_currency(trip.price, :unit => "$") %></td>
         <td><%= trip.start_date %></td>
         <td><%= trip.end_date %></td>
         <td><%= link_to 'Sign up', new_trip_attendee_path(trip), class: "btn btn-primary" %></td>
