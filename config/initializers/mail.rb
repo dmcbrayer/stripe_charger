@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
 	port: 587,
 	enable_starttls_auto: true,
 	user_name: "daniel@vestigo.co",
-	password: "OACVpiS15ADon3HxmUxNLA"
+	password: "OACVpiS15ADon3HxmUxNLA",
 	authentication: "login"
 }
 

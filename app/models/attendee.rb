@@ -17,6 +17,8 @@ class Attendee < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
+  after_create :send_notification
+
 	def charge_stripe(amount, params)
 
     amount_in_cents = amount*100
@@ -34,5 +36,9 @@ class Attendee < ActiveRecord::Base
       currency: 'usd'
     )
 
+  end
+
+  def send_notification
+    AdminMailer.new_attendee(self).deliver
   end
 end
