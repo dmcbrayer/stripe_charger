@@ -12,4 +12,9 @@
   <%= @leader.email %>
 </p>
 
+<p>
+	<strong>Phone:</strong>
+	<%= number_to_phone(@leader.phone, area_code: true) %>
+</p>
+
 <%= link_to 'Back', leaders_path %>

@@ -13,6 +13,7 @@ FactoryGirl.define do
   factory :leader do
     name "MyString"
 		email "user@example.com"
+		phone 2054225555
   end
 
 end

@@ -26,7 +26,7 @@
     src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
     data-key="pk_test_To6xtnnLr2Ns3JUAwb5RkDK8"
     data-amount="<%= @trip.price*100 %>"
-    data-name="Ventura - <%= @trip.title %>"
+    data-name="Vestigo - <%= @trip.title %>"
     data-description="Trip Price: <%= number_to_currency(@trip.price, :unit => "$") %>"
     data-currency="usd"
     data-label="Complete Registration"

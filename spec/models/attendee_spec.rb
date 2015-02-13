@@ -35,7 +35,9 @@ RSpec.describe Attendee, :type => :model do
 	end
 
 	describe "paid should default to false" do
-		expect(@attendee.paid).to eq(false)
+		it "should be false" do
+			expect(@attendee.paid).to eq(false)
+		end
 	end
 
 	describe "when name is blank" do
@@ -72,7 +74,7 @@ RSpec.describe Attendee, :type => :model do
 		    charge = Stripe::Charge.create(
 		      card: stripe_helper.generate_card_token,
 		      amount: 500,
-		      description: 'Ventura trip',
+		      description: 'Vestigo trip',
 		      currency: 'usd'
 		    )
 		    expect{charge}.to_not raise_error
@@ -81,8 +83,5 @@ RSpec.describe Attendee, :type => :model do
 
 		describe "when card information is invalid" do
 		end
-		
 	end
-
-	
 end

@@ -10,6 +10,8 @@ $navbar-default-color:            #777;
 $navbar-default-bg:               #FFFFFF;
 $brand-primary:                   #c0392b;
 $grayLight:                       #bdc3c7;
+$grayMediumLight:                 #eaeaea;
+$grayDarker:                      darken($grayMediumLight, 15%);
 $link-color:                      $brand-primary;
 $link-hover-color:                darken($link-color, 15%);
 
@@ -88,9 +90,6 @@ a {
   }
 }
 
-
-
-
 /* header */
 
 #logo {
@@ -108,10 +107,13 @@ a {
 
 /* Get rid of rounded corners on the navbar and panel.  Why is that the default? */
 .navbar {
-
 	-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;
   border-left: none;
   border-right: none;
+}
+
+.navbar-nav li a {
+ line-height: 60px;
 }
 
 .panel {
@@ -143,6 +145,32 @@ input {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover {
+      color: $grayDarker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
   }
 }
 
