@@ -1,3 +1,5 @@
+<% provide(:title, @trip.title) %>
+
 <p>
   <strong>Title:</strong>
   <%= @trip.title %>
@@ -5,7 +7,7 @@
 
 <p>
   <strong>Leader:</strong>
-  <%= @leader.name %>
+  <%= link_to @leader.name, @leader %>
 </p>
 
 <p>
@@ -15,12 +17,12 @@
 
 <p>
   <strong>Start Date:</strong>
-  <%= @trip.start_date %>
+  <%= @trip.start_date.strftime("%B %d, %Y") %>
 </p>
 
 <p>
   <strong>End Date:</strong>
-  <%= @trip.end_date %>
+  <%= @trip.end_date.strftime("%B %d, %Y") %>
 </p>
 
 <%= link_to 'Sign Up', new_trip_attendee_path(@trip), class: 'btn btn-default' %> <br>

@@ -1,24 +1,28 @@
+<% provide(:title, 'Leaders') %>
+
 <h1>Listing leaders</h1>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @leaders.each do |leader| %>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <td><%= leader.name %></td>
-        <td><%= leader.email %></td>
-        <td><%= link_to 'Show', leader %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @leaders.each do |leader| %>
+        <tr>
+          <td><%= leader.name %></td>
+          <td><%= leader.email %></td>
+          <td><%= link_to 'Show', leader %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
