@@ -14,10 +14,10 @@ class AttendeeMailer < ActionMailer::Base
   	template_name = 'new-attendee'
   	template_content = []
   	message = {
-  		to: [{email: "dmcbrayer@gmail.com", name: "Daniel McBrayer"}],
+  		to: [{email: attendee.email}],
   		subject: "New Attendee: #{attendee.name}",
   		merge_vars:[
-  			{rcpt: "dmcbrayer@gmail.com",
+  			{rcpt: attendee.email,
   				vars: [
   					{name: "ATTENDEE_NAME", content: attendee.name}
   				]

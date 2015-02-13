@@ -17,17 +17,18 @@ class AttendeesController < ApplicationController
   end
 
   def create
-    @attendee = @trip.attendees.create(attendee_params)
+    @attendee = @trip.attendees.new(attendee_params)
     @attendee.email = params[:stripeEmail]
+    @attendee.save
 
 
     respond_to do |format|
       if @attendee.save
-        flash[:success] = "Attendee was successfully saved."
+        flash[:success] = "You successfully signed up!"
         @attendee.charge_stripe(@trip.price, params)
         format.html { redirect_to root_url}
       else
-        flash.now[:danger] = "Attendee could not be saved"
+        flash.now[:danger] = "Something went wrong with your registration."
         format.html { render :new }
       end
     end
