@@ -16,6 +16,7 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'unicorn'
+gem 'mandrill-api', require: "mandrill"
 
 group :production do
   gem 'pg'

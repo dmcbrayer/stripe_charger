@@ -39,6 +39,6 @@ class Attendee < ActiveRecord::Base
   end
 
   def send_notification
-    AttendeeMailer.new_attendee(self).deliver
+    AttendeeMailer.new_attendee(self)
   end
 end
