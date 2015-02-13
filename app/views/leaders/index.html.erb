@@ -2,27 +2,26 @@
 
 <h1>Listing Leaders</h1>
 
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @leaders.each do |leader| %>
-        <tr>
-          <td><%= leader.name %></td>
-          <td><%= leader.email %></td>
-          <td><%= link_to 'Show', leader %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leaders.each do |leader| %>
+      <tr>
+        <td><%= link_to leader.name, leader %></td>
+        <td><%= leader.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <br>
 
