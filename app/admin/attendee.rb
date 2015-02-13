@@ -14,5 +14,7 @@ ActiveAdmin.register Attendee do
   #   permitted
   # end
 
+  permit_params :name, :email, :phone, :paid, :trip_id
+
 
 end

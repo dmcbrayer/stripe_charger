@@ -14,7 +14,7 @@ ActiveAdmin.register Leader do
   #   permitted
   # end
 
-  permit_params :name, :email
+  permit_params :name, :email, :phone
 
 
 end
