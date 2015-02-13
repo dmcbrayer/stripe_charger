@@ -27,4 +27,10 @@ class AttendeeMailer < ActionMailer::Base
 
   	mandrill_client.messages.send_template template_name, template_content, message
   end
+
+  def admin_message(attendee)
+    @attendee = attendee
+    mail(to: ["daniel@vestigo.co", "marshall@vestigo.co"], subject: "New sign up on the trip to #{@attendee.trip.title}")
+  end
+
 end

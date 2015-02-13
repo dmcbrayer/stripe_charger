@@ -10,4 +10,8 @@ module ApplicationHelper
     end
   end
 
+  def get_trip_leader(trip)
+  	Leader.find(trip.leader)
+  end
+
 end
