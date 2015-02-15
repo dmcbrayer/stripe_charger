@@ -1,4 +1,4 @@
-module ApplicationHelper
+tmodule ApplicationHelper
 
 	# Returns the full title on a per-page basis.
   def full_title(page_title)
@@ -10,8 +10,8 @@ module ApplicationHelper
     end
   end
 
-  def get_trip_leader(trip)
-  	Leader.find(trip.leader)
-  end
+ # def get_trip_leader(trip)
+ # 	Leader.find(trip.leader)
+ # end
 
 end
