@@ -19,7 +19,8 @@ class AttendeeMailer < ActionMailer::Base
   		merge_vars:[
   			{rcpt: attendee.email,
   				vars: [
-  					{name: "ATTENDEE_NAME", content: attendee.name}
+  					{name: "ATTENDEE_NAME", content: attendee.name},
+            {name: "TRIP_TITLE", content: attendee.trip.title}
   				]
   			}
   		]
