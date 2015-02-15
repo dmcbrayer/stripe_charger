@@ -18,6 +18,7 @@ class Attendee < ActiveRecord::Base
   validates :email, presence: true
 
   after_create :send_notification
+  after_create :admin_notification
 
 	def charge_stripe(amount, params)
 
@@ -40,5 +41,9 @@ class Attendee < ActiveRecord::Base
 
   def send_notification
     AttendeeMailer.new_attendee(self)
+  end
+
+  def admin_notification
+    AttendeeMailer.admin_message(self).deliver
   end
 end

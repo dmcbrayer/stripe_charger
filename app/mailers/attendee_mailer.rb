@@ -5,17 +5,12 @@ class AttendeeMailer < ActionMailer::Base
   	@mandrill_client ||= Mandrill::API.new MANDRILL_KEY
   end
 
-  #def new_attendee(attendee)
-  #	@attendee = attendee
-  #	mail(to: @attendee.email, subject: "Your Vestigo Trip")
-  #end
-
   def new_attendee(attendee)
   	template_name = 'new-attendee'
   	template_content = []
   	message = {
   		to: [{email: attendee.email}],
-  		subject: "New Attendee: #{attendee.name}",
+  		subject: "Your Vestigo trip",
   		merge_vars:[
   			{rcpt: attendee.email,
   				vars: [
@@ -31,7 +26,7 @@ class AttendeeMailer < ActionMailer::Base
 
   def admin_message(attendee)
     @attendee = attendee
-    mail(to: ["daniel@vestigo.co", "marshall@vestigo.co"], subject: "New sign up on the trip to #{@attendee.trip.title}")
+    mail(to: "daniel@vestigo.co", subject: "New sign up on the trip to #{@attendee.trip.title}")
   end
 
 end
