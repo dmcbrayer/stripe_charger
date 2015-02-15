@@ -2,7 +2,7 @@ class AttendeeMailer < ActionMailer::Base
   default from: "no-reply@vestigo.co"
 
   def mandrill_client
-  	@mandrill_client ||= Mandrill::API.new MANDRILL_API_KEY
+  	@mandrill_client ||= Mandrill::API.new MANDRILL_KEY
   end
 
   #def new_attendee(attendee)

@@ -1,11 +1,11 @@
-MANDRILL_API_KEY = ENV['MANDRILL_API_KEY']
+MANDRILL_KEY = ENV['MANDRILL_API_KEY']
 
 ActionMailer::Base.smtp_settings = {
 	address:  "smtp.mandrillapp.com",
 	port: 587,
 	enable_starttls_auto: true,
 	user_name: "daniel@vestigo.co",
-	password: MANDRILL_API_KEY,
+	password: MANDRILL_KEY,
 	authentication: "login"
 }
 
