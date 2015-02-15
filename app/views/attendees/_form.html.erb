@@ -24,7 +24,7 @@
 
   <script
     src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-    data-key="<%= :publishable_key %>"
+    data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
     data-amount="<%= @trip.price*100 %>"
     data-name="Vestigo - <%= @trip.title %>"
     data-description="Trip Price: <%= number_to_currency(@trip.price, :unit => "$") %>"
