@@ -16,6 +16,7 @@ class Attendee < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true
+  validates :phone, presence: true
 
   after_create :send_notification
   after_create :admin_notification

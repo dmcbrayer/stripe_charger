@@ -54,6 +54,13 @@ RSpec.describe Attendee, :type => :model do
 		end
 	end
 
+	describe "when phone is blank" do
+		it "should be invalid" do
+			@attendee.phone = ""
+			expect(@attendee).not_to be_valid
+		end
+	end
+
 	describe "Stripe charging" do
 		let(:stripe_helper) { StripeMock.create_test_helper }
 	  before(:each) { StripeMock.start }

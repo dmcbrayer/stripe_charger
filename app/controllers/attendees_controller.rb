@@ -21,22 +21,22 @@ class AttendeesController < ApplicationController
     @attendee.email = params[:stripeEmail]
     @attendee.save
 
-
     respond_to do |format|
       if @attendee.save
+        begin
+          @attendee.charge_stripe(@trip.price, params)
+        rescue Stripe::CardError => e
+          flash[:error] = e.message
+          redirect_to trips_path
+        end
+
         flash[:success] = "You successfully signed up!"
-        @attendee.charge_stripe(@trip.price, params)
         format.html { redirect_to root_url}
       else
-        flash.now[:danger] = "Something went wrong with your registration."
+        flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
         format.html { render :new }
       end
     end
-
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to trips_path
-      
   end
 
   def update
