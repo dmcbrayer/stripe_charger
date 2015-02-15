@@ -2,6 +2,14 @@
 
 <p><%= @attendee.email %> has signed up for the trip to <%= @attendee.trip.title %>.  <%= @attendee.trip.get_leader.name %> is leading this trip.</p>
 
+<h3>Current list of attendees:</h3>
+
+<ul>
+	<% @attendee.trip.attendees.each do |attendee| %>
+		<li><%= attendee.name %> - <%= attendee.email %>
+	<% end %>
+</ul>
+
 <p>Love,</p>
 
 <p><strong>Vestigo Bot</strong></p>  
