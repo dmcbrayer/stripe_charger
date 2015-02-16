@@ -33,6 +33,11 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Description:</strong>
+  <%= @trip.description %>
+</p>
+
 <%= link_to 'Sign Up', new_trip_attendee_path(@trip), class: 'btn btn-default' %> <br>
 
 <%= link_to 'Back', trips_path %> <br>

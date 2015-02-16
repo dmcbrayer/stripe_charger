@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: 'trips#index'
 
   resources :trips, only: [:index, :show] do
-    resources :attendees
+    resources :attendees, except: [:index, :show]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
