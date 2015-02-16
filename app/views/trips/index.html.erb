@@ -19,8 +19,19 @@
       <tr>
         <td><%= link_to trip.title, trip %></td>
         <td><%= number_to_currency(trip.price, :unit => "$") %></td>
-        <td><%= trip.start_date.strftime("%m/%d/%Y") %></td>
-        <td><%= trip.end_date.strftime("%m/%d/%Y") %></td>
+        
+        <% if trip.start_date? %>
+          <td><%= trip.start_date.strftime("%m/%d/%Y") %></td>
+        <% else %>
+          <td>TBD</td>
+        <% end %>
+
+        <% if trip.end_date? %>
+          <td><%= trip.end_date.strftime("%m/%d/%Y") %></td>
+        <% else %>
+          <td>TBD</td>
+        <% end %>
+
         <td><%= link_to 'Sign up', new_trip_attendee_path(trip), class: "btn btn-primary" %></td>
       </tr>
     <% end %>

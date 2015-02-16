@@ -17,12 +17,20 @@
 
 <p>
   <strong>Start Date:</strong>
-  <%= @trip.start_date.strftime("%B %d, %Y") %>
+  <% if @trip.start_date? %>
+    <%= @trip.start_date.strftime("%B %d, %Y") %>
+  <% else %>
+    TBD  
+  <% end %>
 </p>
 
 <p>
   <strong>End Date:</strong>
-  <%= @trip.end_date.strftime("%B %d, %Y") %>
+  <% if @trip.end_date? %>
+    <%= @trip.end_date.strftime("%B %d, %Y") %>
+  <% else %>
+    TBD
+  <% end %>
 </p>
 
 <%= link_to 'Sign Up', new_trip_attendee_path(@trip), class: 'btn btn-default' %> <br>
