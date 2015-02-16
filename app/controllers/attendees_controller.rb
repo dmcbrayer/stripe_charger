@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
           format.html { redirect_to root_url}
         rescue Stripe::CardError => e
           flash[:error] = e.message
-          redirect_to trip_path(@trip)
+          format.html { redirect_to trips_path }
         end
       else
         flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
