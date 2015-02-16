@@ -26,7 +26,7 @@ class AttendeeMailer < ActionMailer::Base
 
   def admin_message(attendee)
     @attendee = attendee
-    mail(to: ["daniel@vestigo.co","marshall@vestigo.co"], subject: "New sign up on the trip to #{@attendee.trip.title}")
+    mail(to: ["daniel@vestigo.co","marshall@vestigo.co", @attendee.trip.get_leader.email], subject: "New sign up on the trip to #{@attendee.trip.title}")
   end
 
 end
