@@ -25,13 +25,12 @@ class AttendeesController < ApplicationController
       if @attendee.save
         begin
           @attendee.charge_stripe(@trip.price, params)
+          flash[:success] = "You successfully signed up!"
+          format.html { redirect_to root_url}
         rescue Stripe::CardError => e
           flash[:error] = e.message
-          redirect_to trips_path
+          redirect_to trip_path(@trip)
         end
-
-        flash[:success] = "You successfully signed up!"
-        format.html { redirect_to root_url}
       else
         flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
         format.html { render :new }
