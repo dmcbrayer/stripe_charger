@@ -17,6 +17,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'unicorn'
 gem 'mandrill-api', require: "mandrill"
+gem 'newrelic_rpm'
 
 group :production do
   gem 'pg'
