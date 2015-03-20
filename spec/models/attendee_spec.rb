@@ -16,8 +16,13 @@ require 'rails_helper'
 RSpec.describe Attendee, :type => :model do
   
   before(:each) do
+  	@leader = FactoryGirl.create(:leader)
   	@trip = FactoryGirl.create(:trip)
   	@attendee = @trip.attendees.create(FactoryGirl.attributes_for(:attendee))
+	end
+
+	after(:each) do
+		ActionMailer::Base.deliveries.clear
 	end
 
 	describe "Model set up" do
@@ -32,6 +37,27 @@ RSpec.describe Attendee, :type => :model do
 
 		it {is_expected.to be_valid}
 
+	end
+
+	describe "Mailer functions" do
+		it "should send an email" do
+			expect {@attendee.admin_messages }.to change { ActionMailer::Base.deliveries.count }.by(1)
+		end
+
+		it "should be sent from the correct address" do
+			expect(ActionMailer::Base.deliveries.first.from).to eql(['no-reply@vestigo.co'])
+		end
+
+		describe "correct email gets sent" do
+			it "sends first message for the first attendee" do
+				expect(ActionMailer::Base.deliveries.first.subject).to include("First sign up")
+			end
+
+			it "sends the new sign up message for subsequent attendees" do
+				attendee2 = @trip.attendees.create(FactoryGirl.attributes_for(:attendee))
+				expect(ActionMailer::Base.deliveries[1].subject).to include("New sign up")
+			end
+		end
 	end
 
 	describe "paid should default to false" do
@@ -89,6 +115,7 @@ RSpec.describe Attendee, :type => :model do
 		end
 
 		describe "when card information is invalid" do
+			pending
 		end
 	end
 end

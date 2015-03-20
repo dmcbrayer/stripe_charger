@@ -19,7 +19,7 @@ class Attendee < ActiveRecord::Base
   validates :phone, presence: true
 
   after_create :send_notification
-  after_create :admin_notification
+  after_create :admin_messages
 
 	def charge_stripe(amount, params)
 
@@ -44,7 +44,35 @@ class Attendee < ActiveRecord::Base
     AttendeeMailer.new_attendee(self)
   end
 
-  def admin_notification
-    AttendeeMailer.admin_message(self).deliver
+
+  def admin_messages
+    first = is_first?
+
+    if first == true
+      first_message
+    else
+      new_sign_up_message
+    end
   end
+
+  def is_first?
+
+    count = self.trip.attendees.count
+
+    if count > 1
+      false
+    else
+      true
+    end
+
+  end
+
+  def first_message
+    AttendeeMailer.first_message(self).deliver
+  end
+
+  def new_sign_up_message
+    AttendeeMailer.new_sign_up_message(self).deliver
+  end
+
 end
