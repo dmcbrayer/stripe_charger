@@ -9,5 +9,5 @@ ActionMailer::Base.smtp_settings = {
 	authentication: "login"
 }
 
-ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.delivery_method = :smtp unless Rails.env == "test"
 ActionMailer::Base.default charset: "utf-8"

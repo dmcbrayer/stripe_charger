@@ -37,6 +37,10 @@ RSpec.describe AttendeeMailer, :type => :mailer do
 	    it 'renders the sender email' do
 	      expect(mail.from).to eql(['no-reply@vestigo.co'])
 	    end
+
+      it 'contains the right content' do
+        expect(mail.body).to include("Sweet!")
+      end
   	end
 
   	describe 'attendee email' do
