@@ -25,6 +25,8 @@ class AttendeesController < ApplicationController
         if @attendee.charge_stripe(@trip.price, params)
           flash[:success] = "You successfully signed up!"
           @attendee.update(paid: true)
+
+          
           format.html { redirect_to root_url } 
         else
           flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."

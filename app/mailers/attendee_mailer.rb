@@ -24,7 +24,14 @@ class AttendeeMailer < ActionMailer::Base
   	mandrill_client.messages.send_template template_name, template_content, message
   end
 
-  def admin_message(attendee)
+  def first_message(attendee)
+    @attendee = attendee
+    attachments['Waiver.pdf'] = File.read("#{Rails.root}/vendor/assets/Waiver.pdf")
+    mail(to: ["daniel@vestigo.co","marshall@vestigo.co", @attendee.trip.get_leader.email], subject: "First sign up on the trip to #{@attendee.trip.title}")
+
+  end
+
+  def new_sign_up_message(attendee)
     @attendee = attendee
     mail(to: ["daniel@vestigo.co","marshall@vestigo.co", @attendee.trip.get_leader.email], subject: "New sign up on the trip to #{@attendee.trip.title}")
   end

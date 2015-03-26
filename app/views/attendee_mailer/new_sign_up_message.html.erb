@@ -1,0 +1,15 @@
+<h2>Sweet!</h2>
+
+<p>Someone new signed up for your trip: <%= @attendee.trip.title %>!  A current list of attendees is below.  Don't forget to check up with everyone before you go on your trip!</p>
+
+<h3>Current list of attendees:</h3>
+
+<ul>
+	<% @attendee.trip.attendees.each do |attendee| %>
+		<li><%= attendee.name %> - <%= attendee.email %>
+	<% end %>
+</ul>
+
+<p>Love,</p>
+
+<p><strong>Vestigo Bot</strong></p>  
