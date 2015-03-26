@@ -26,7 +26,9 @@ class AttendeeMailer < ActionMailer::Base
 
   def first_message(attendee)
     @attendee = attendee
+    attachments['Waiver.pdf'] = File.read("#{Rails.root}/vendor/assets/Waiver.pdf")
     mail(to: ["daniel@vestigo.co","marshall@vestigo.co", @attendee.trip.get_leader.email], subject: "First sign up on the trip to #{@attendee.trip.title}")
+
   end
 
   def new_sign_up_message(attendee)

@@ -20,6 +20,14 @@ RSpec.describe AttendeeMailer, :type => :mailer do
 	    it 'renders the sender email' do
 	      expect(mail.from).to eql(['no-reply@vestigo.co'])
 	    end
+
+      it 'has the attachment' do
+        expect(mail.attachments.count).to eq 1
+      end
+
+      it 'has the right attachment' do
+        expect(mail.attachments[0].filename).to eql("Waiver.pdf")
+      end
 	 
   	end
 
