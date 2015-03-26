@@ -16,8 +16,9 @@ pickle-email-*.html
 .DS_Store
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
-config/secrets.yml
+# NOTE:  Heroku doesn't work if these are in .gitignore
+# config/initializers/secret_token.rb
+# config/secrets.yml
 
 ## Environment normalisation:
 /.bundle
