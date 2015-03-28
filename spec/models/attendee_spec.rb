@@ -9,6 +9,8 @@
 #  trip_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  paid       :boolean          default(FALSE)
+#  card_error :boolean          default(FALSE)
 #
 
 require 'rails_helper'
