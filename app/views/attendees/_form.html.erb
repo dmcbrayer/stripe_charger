@@ -25,9 +25,11 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :amount %><br>
-    <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
-    <%= text_field_tag :amount, nil, id: "amount-id" %>
+    <% if @trip.custom? %>
+      <%= f.label :amount, "Pay What You Want Amount" %><br>
+      <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
+      <%= text_field_tag :amount, nil, id: "amount-id" %>
+    <% end %>
   </div>
 
   <button id="customButton" class="btn btn-primary">Pay</button>
