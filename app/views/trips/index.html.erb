@@ -18,7 +18,12 @@
     <% @trips.each do |trip| %>
       <tr>
         <td><%= link_to trip.title, trip %></td>
-        <td><%= number_to_currency(trip.price, :unit => "$") %></td>
+
+        <% if trip.custom? %>
+          <td>Pay What You Want</td>
+        <% else %>
+          <td><%= number_to_currency(trip.price, :unit => "$") %></td>
+        <% end %>
         
         <% if trip.start_date? %>
           <td><%= trip.start_date.strftime("%m/%d/%Y") %></td>
