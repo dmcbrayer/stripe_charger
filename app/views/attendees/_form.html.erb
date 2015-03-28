@@ -1,3 +1,4 @@
+
 <%= form_for(@attendee, url: trip_attendees_path, html: {id: "payment-form"}) do |f| %>
   <% if @attendee.errors.any? %>
     <div id="error_explanation">
@@ -23,16 +24,49 @@
     <%= f.text_field :phone, class: "form-control" %>
   </div>
 
-  <script
-    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-    data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
-    data-amount="<%= @trip.price*100 %>"
-    data-name="Vestigo - <%= @trip.title %>"
-    data-description="Trip Price: <%= number_to_currency(@trip.price, :unit => "$") %>"
-    data-currency="usd"
-    data-label="Complete Registration"
-    data-allow-remember-me="false">
+  <div class="form-group">
+    <%= f.label :amount %><br>
+    <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
+    <%= text_field_tag :amount, nil, id: "amount-id" %>
+  </div>
+
+  <button id="customButton" class="btn btn-primary">Pay</button>
+
+  
+  
+  <script>
+    var amount;
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_To6xtnnLr2Ns3JUAwb5RkDK8',
+      image: 'https://s3.amazonaws.com/stripe-uploads/acct_14dt2kGcwa0Mb04Nmerchant-icon-371728-Hikermeals_03.png',
+      token: function(token) {
+        // Use the token to create the charge with a server-side script.
+        // You can access the token ID with `token.id`
+      }
+    });
+
+    $("#amount-id").on('blur', function (e) {
+      amount = parseInt($(this).val()) * 100  
+    })
+
+    $('#customButton').on('click', function(e) {
+      // Open Checkout with further options
+      handler.open({
+        name: 'Hiker Meals',
+        description: '2 widgets',
+        zipCode: false,
+        amount: amount
+      });
+      e.preventDefault();
+    });
+
+    // Close Checkout on page navigation
+    $(window).on('popstate', function() {
+      handler.close();
+    });
   </script>
+
+
 
 
 <% end %>
