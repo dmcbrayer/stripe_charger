@@ -14,7 +14,7 @@ ActiveAdmin.register Trip do
   #   permitted
   # end
 
-  permit_params :title, :leader, :price, :start_date, :end_date, :description
+  permit_params :title, :leader, :price, :start_date, :end_date, :description, :custom
 
   index do
     selectable_column
