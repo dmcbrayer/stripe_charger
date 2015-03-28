@@ -29,6 +29,7 @@ RSpec.describe Trip, :type => :model do
 		it {is_expected.to respond_to(:price)}
 		it {is_expected.to respond_to(:start_date)}
 		it {is_expected.to respond_to(:end_date)}
+		it {is_expected.to respond_to(:custom)}
 
 		it {is_expected.to be_valid}
 	end
@@ -52,6 +53,12 @@ RSpec.describe Trip, :type => :model do
 		it "should be invalid" do
 			@trip.price = " "
 			expect(@trip).not_to be_valid
+		end
+	end
+
+	describe "custom" do
+		it "should default to false" do
+			expect(@trip.custom).to eq(false)
 		end
 	end
 

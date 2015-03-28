@@ -22,7 +22,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       begin
-        if @attendee.charge_stripe(@trip.price, params)
+        if @attendee.charge_stripe(params[:amount], params)
           flash[:success] = "You successfully signed up!"
           @attendee.update(paid: true)
 
