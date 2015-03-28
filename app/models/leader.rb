@@ -7,6 +7,7 @@
 #  email      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  phone      :string(255)
 #
 
 class Leader < ActiveRecord::Base
