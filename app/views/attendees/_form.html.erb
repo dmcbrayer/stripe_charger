@@ -12,6 +12,10 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :email %>
+
+  <%= hidden_field_tag :token %>
+
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -60,6 +64,5 @@
   </div>
 
   <%= f.submit "Sign me up!" %>
-
 
 <% end %>
