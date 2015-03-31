@@ -13,6 +13,10 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :email %>
+
+  <%= hidden_field_tag :token %>
+
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -32,18 +36,23 @@
     <% end %>
   </div>
 
-  <button id="customButton" class="btn btn-primary">Pay</button>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+  <button id="customButton" class="btn btn-primary">Pay</button>
   
   
   <script>
     var amount;
     var handler = StripeCheckout.configure({
-      key: 'pk_test_To6xtnnLr2Ns3JUAwb5RkDK8',
+      key: 'pk_test_G09Rb9tZW56ogyWpa1l6s7uV',
       image: 'https://s3.amazonaws.com/stripe-uploads/acct_14dt2kGcwa0Mb04Nmerchant-icon-371728-Hikermeals_03.png',
       token: function(token) {
         // Use the token to create the charge with a server-side script.
         // You can access the token ID with `token.id`
+        // console.log(token.id)
+        $('#token').val(token.id);
+        $('#payment-form').submit();
       }
     });
 
@@ -60,6 +69,8 @@
         amount: amount
       });
       e.preventDefault();
+      $('#token').val(token.id)
+      // $('#payment-form').submit();
     });
 
     // Close Checkout on page navigation
@@ -67,8 +78,5 @@
       handler.close();
     });
   </script>
-
-
-
 
 <% end %>
