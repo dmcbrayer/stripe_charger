@@ -37,6 +37,8 @@
       <%= f.label :amount, "Pay What You Want Amount" %><br>
       <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
       <%= text_field_tag :amount, nil, id: "amount-id" %>
+    <% else %>
+      <%= hidden_field_tag :amount, @trip.price*100  %>
     <% end %>
   </div>
 
