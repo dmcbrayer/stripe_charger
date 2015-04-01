@@ -12,6 +12,10 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :email %>
+
+  <%= hidden_field_tag :token %>
+
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -29,9 +33,13 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :amount %><br>
-    <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
-    <%= text_field_tag :amount, nil, id: "amount-id" %>
+    <% if @trip.custom? %>
+      <%= f.label :amount, "Pay What You Want Amount" %><br>
+      <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
+      <%= text_field_tag :amount, nil, id: "amount-id" %>
+    <% else %>
+      <%= hidden_field_tag :amount, @trip.price*100  %>
+    <% end %>
   </div>
 
   <div class="form-row">
@@ -58,6 +66,5 @@
   </div>
 
   <%= f.submit "Sign me up!" %>
-
 
 <% end %>
