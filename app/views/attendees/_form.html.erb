@@ -18,21 +18,46 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :phone %><br>
     <small>We're only asking for this in case we need to text you trip updates.</small><br>
     <%= f.text_field :phone, class: "form-control" %>
   </div>
 
-  <script
-    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-    data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
-    data-amount="<%= @trip.price*100 %>"
-    data-name="Vestigo - <%= @trip.title %>"
-    data-description="Trip Price: <%= number_to_currency(@trip.price, :unit => "$") %>"
-    data-currency="usd"
-    data-label="Complete Registration"
-    data-allow-remember-me="false">
-  </script>
+  <div class="form-group">
+    <%= f.label :amount %><br>
+    <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
+    <%= text_field_tag :amount, nil, id: "amount-id" %>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Card Number</span>
+      <%= text_field_tag :number %>
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>CVC</span>
+      <%= text_field_tag :cvc %>
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Expiration (MM/YYYY)</span>
+      <%= text_field_tag :exp_month %>
+    </label>
+    <span> / </span>
+      <%= text_field_tag :exp_year %>
+  </div>
+
+  <%= f.submit "Sign me up!" %>
 
 
 <% end %>
