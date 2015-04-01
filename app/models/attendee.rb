@@ -21,23 +21,49 @@ class Attendee < ActiveRecord::Base
   after_create :send_notification
   after_create :admin_messages
 
-	def charge_stripe(amount, params)
+	def get_customer_from_stripe
+    # Add customer id to User model
+    cus_id = self.customer_id
+    customer = Stripe::Customer.retrieve(cus_id)
+    return customer
+  end
 
-    amount_in_cents = amount*100
-
-		customer = Stripe::Customer.create(
-      description: "Vestigo Customer",
+  def create_stripe_customer(params, token)
+    puts params[:stripeToken]
+    customer = Stripe::Customer.create(
+      description: "Hiker Meals Customer",
       email: params[:email],
-      card: params[:stripeToken]
+      card: token.id
     )
+    self.update_attributes(customer_id: customer.id)
+  end
+
+  def charge_stripe(amount, params)
+    token = self.create_stripe_token(params)
+
+    unless self.customer_id
+      self.create_stripe_customer(params, token)
+    end
 
     charge = Stripe::Charge.create(
-      customer: customer.id,
-      amount: amount_in_cents,
-      description: 'Vestigo trip',
+      customer: self.customer_id,
+      amount: amount,
+      description: "Vestigo Trip charge",
       currency: 'usd'
     )
+    return charge
+  end
 
+  def create_stripe_token(params)
+    token = Stripe::Token.create(
+      card: {
+        number: params[:number],
+        exp_month: params[:exp_month],
+        exp_year: params[:exp_year],
+        cvc: params[:cvc]
+      }
+    )
+    return token
   end
 
   def send_notification

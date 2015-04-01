@@ -19,6 +19,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :phone %><br>
     <small>We're only asking for this in case we need to text you trip updates.</small><br>
     <%= f.text_field :phone, class: "form-control" %>
@@ -30,43 +35,28 @@
     <%= text_field_tag :amount, nil, id: "amount-id" %>
   </div>
 
-  <button id="customButton" class="btn btn-primary">Pay</button>
+  <div class="form-row">
+    <label>
+      <span>Card Number</span>
+      <%= text_field_tag :number %>
+    </label>
+  </div>
 
-  
-  
-  <script>
-    var amount;
-    var handler = StripeCheckout.configure({
-      key: 'pk_test_To6xtnnLr2Ns3JUAwb5RkDK8',
-      image: 'https://s3.amazonaws.com/stripe-uploads/acct_14dt2kGcwa0Mb04Nmerchant-icon-371728-Hikermeals_03.png',
-      token: function(token) {
-        // Use the token to create the charge with a server-side script.
-        // You can access the token ID with `token.id`
-      }
-    });
+  <div class="form-row">
+    <label>
+      <span>CVC</span>
+      <%= text_field_tag :cvc %>
+    </label>
+  </div>
 
-    $("#amount-id").on('blur', function (e) {
-      amount = parseInt($(this).val()) * 100  
-    })
-
-    $('#customButton').on('click', function(e) {
-      // Open Checkout with further options
-      handler.open({
-        name: 'Hiker Meals',
-        description: '2 widgets',
-        zipCode: false,
-        amount: amount
-      });
-      e.preventDefault();
-    });
-
-    // Close Checkout on page navigation
-    $(window).on('popstate', function() {
-      handler.close();
-    });
-  </script>
-
-
+  <div class="form-row">
+    <label>
+      <span>Expiration (MM/YYYY)</span>
+      <%= text_field_tag :exp_month %>
+    </label>
+    <span> / </span>
+      <%= text_field_tag :exp_year %>
+  </div>
 
 
 <% end %>
