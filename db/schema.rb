@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327030703) do
+ActiveRecord::Schema.define(version: 20150401182742) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(version: 20150327030703) do
     t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "paid",       default: false
-    t.boolean  "card_error", default: false
+    t.boolean  "paid",        default: false
+    t.boolean  "card_error",  default: false
+    t.string   "customer_id"
   end
 
   add_index "attendees", ["trip_id"], name: "index_attendees_on_trip_id"
