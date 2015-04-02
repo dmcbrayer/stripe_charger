@@ -23,48 +23,64 @@
 
   <div class="form-group">
     <%= f.label :email %>
-    <%= f.text_field :email, class: "form-control" %>
+    <%= f.text_field :email, class: "form-control email" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :phone %><br>
-    <small>We're only asking for this in case we need to text you trip updates.</small><br>
-    <%= f.text_field :phone, class: "form-control" %>
+    <%= f.label :phone %>
+    <p style="display: inline-block; float: right; font-size: 0.7em;">*We're only asking for your number in case we need to text you trip updates.</p>
+    <%= f.text_field :phone, class: "form-control phone_number" %>
   </div>
 
   <div class="form-group">
     <% if @trip.custom? %>
-      <%= f.label :amount, "Pay What You Want Amount" %><br>
-      <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
-      <%= text_field_tag :amount, nil, id: "amount-id" %>
-    <% else %>
-      <%= hidden_field_tag :amount, @trip.price*100  %>
+      <h4>Pay What You Want Amount</h4>
+      <small>This generous trip leader is using a "Pay What You Want" format, so enter what you think this is worth.</small>
     <% end %>
   </div>
 
-  <div class="form-row">
-    <label>
-      <span>Card Number</span>
-      <%= text_field_tag :number %>
-    </label>
+  <div class="form-group">
+    <div class="col-md-8" style="padding: 0.2em;">
+      <label>Card Number</label>
+      <%= text_field_tag :number, nil, :class => "credit_card_number form-control" %>
+    </div>
+    <div class="col-md-4" style="padding: 0.2em;">
+      <label>Price</label>
+      <% if @trip.custom? %>
+        <%= text_field_tag :amount, nil, :class => "form-control" %>
+      <% else %>
+        <%= text_field_tag :amount, "$#{@trip.price}.00" , disabled: true, :class => "form-control" %>
+        <%= hidden_field_tag :amount, @trip.price*100 %>
+      <% end %>
+    </div>
   </div>
 
   <div class="form-row">
-    <label>
-      <span>CVC</span>
-      <%= text_field_tag :cvc %>
-    </label>
+    <div class="col-md-4" style="padding: 0.2em;">
+      <label>Expiration Month</label>
+      <%= text_field_tag :exp_month, nil, :class => "cc_expiry_month form-control" %>
+    </div>
+    <div class="col-md-4" style="padding: 0.2em;">
+      <label>Expiration Year</label>
+      <%= text_field_tag :exp_year, nil, :class => "cc_expiry_year form-control" %>
+    </div>
+    <div class="col-md-4" style="padding: 0.2em;">
+      <label>CVC</label>
+      <%= text_field_tag :cvc, nil, :class => "credit_card_cvc form-control" %>
+    </div>
   </div>
 
-  <div class="form-row">
-    <label>
-      <span>Expiration (MM/YYYY)</span>
-      <%= text_field_tag :exp_month %>
-    </label>
-    <span> / </span>
-      <%= text_field_tag :exp_year %>
-  </div>
-
-  <%= f.submit "Sign me up!" %>
+  <%= f.submit "Sign me up!", :class => "btn btn-success btn-lg", :style => "width: 100%;" %>
 
 <% end %>
+
+<script>
+    $( function() {
+      $("input.phone_number").formance("format_phone_number"); // setup the formatter
+      $("input.email").formance('validate_email');  // true
+      $('input.credit_card_number').formance('format_credit_card_number');
+      $('input.credit_card_cvc').formance('format_credit_card_cvc');
+      $('input.cc_expiry_month').formance('format_credit_card_cvc'); 
+      $('input.cc_expiry_year').formance('format_credit_card_cvc');
+    });
+</script>

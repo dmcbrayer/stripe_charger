@@ -1,6 +1,14 @@
-<h1>Sign up for <%= @trip.title %>!</h1>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>Sign up for <%= @trip.title %>!</h1>
+  </div>
+</div>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+  <%= render 'form' %>
+</div>
+</div>
 
 <%= link_to 'Back', trips_path %>
 
