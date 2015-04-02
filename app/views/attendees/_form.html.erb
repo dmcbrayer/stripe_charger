@@ -28,27 +28,31 @@
 
   <div class="form-group">
     <%= f.label :phone %>
+    <p style="display: inline-block; float: right; font-size: 0.7em;">*We're only asking for your number in case we need to text you trip updates.</p>
     <%= f.text_field :phone, class: "form-control phone_number" %>
-    <p style="display: inline-block; float: right; font-size: 0.8em;">*We're only asking for this in case we need to text you trip updates.</p>
-  </div>
-
-  <div class="row">
-
   </div>
 
   <div class="form-group">
     <% if @trip.custom? %>
-      <%= f.label :amount, "Pay What You Want Amount" %><br>
-      <small>This generous trip leader is using a "pay what you want" format, so enter what you think this is worth.</small><br>
-      <%= text_field_tag :amount, nil, id: "amount-id" %>
-    <% else %>
-      <%= hidden_field_tag :amount, @trip.price*100  %>
+      <h4>Pay What You Want Amount</h4>
+      <small>This generous trip leader is using a "Pay What You Want" format, so enter what you think this is worth.</small>
     <% end %>
   </div>
 
-  <div class="form-row">
-    <label>Card Number</label>
-    <%= text_field_tag :number, nil, :class => "credit_card_number form-control" %>
+  <div class="form-group">
+    <div class="col-md-8" style="padding: 0.2em;">
+      <label>Card Number</label>
+      <%= text_field_tag :number, nil, :class => "credit_card_number form-control" %>
+    </div>
+    <div class="col-md-4" style="padding: 0.2em;">
+      <label>Price</label>
+      <% if @trip.custom? %>
+        <%= text_field_tag :amount, nil, :class => "form-control" %>
+      <% else %>
+        <%= text_field_tag :amount, "$#{@trip.price}.00" , disabled: true, :class => "form-control" %>
+        <%= hidden_field_tag :amount, @trip.price*100 %>
+      <% end %>
+    </div>
   </div>
 
   <div class="form-row">
@@ -65,8 +69,6 @@
       <%= text_field_tag :cvc, nil, :class => "credit_card_cvc form-control" %>
     </div>
   </div>
-
- 
 
   <%= f.submit "Sign me up!", :class => "btn btn-success btn-lg", :style => "width: 100%;" %>
 
