@@ -60,8 +60,8 @@ class Attendee < ActiveRecord::Base
     token = Stripe::Token.create(
       card: {
         number: params[:number],
-        exp_month: exp_month_year_to_month(params[:exp_date]),
-        exp_year: exp_month_year_to_year(params[:exp_date]),
+        exp_month: exp_month_year_to_month(params[:credit_card_expiry]),
+        exp_year: exp_month_year_to_year(params[:credit_card_expiry]),
         cvc: params[:cvc]
       }
     )

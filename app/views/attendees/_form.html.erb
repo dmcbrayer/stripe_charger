@@ -57,7 +57,7 @@
   <div class="form-row">
     <div class="col-md-4" style="padding: 0.2em;">
       <label>Expiration Date</label>
-      <%= text_field_tag :exp_date, nil, :class => "cc_expiry form-control", :placeholder => "MM / YYYY" %>
+      <%= text_field_tag :credit_card_expiry, nil, :class => "credit_card_expiry form-control", :placeholder => "MM / YYYY" %>
     </div>
     <div class="col-md-4" style="padding: 0.2em;">
       <label>CVC</label>
@@ -69,12 +69,3 @@
 
 <% end %>
 
-<script>
-    $( function() {
-      $("input.phone_number").formance("format_phone_number"); // setup the formatter
-      $("input.email").formance('validate_email');  // true
-      $('input.credit_card_number').formance('format_credit_card_number');
-      $('input.credit_card_cvc').formance('format_credit_card_cvc');
-      $('input.cc_expiry').formance('format_credit_card_expiry'); 
-    });
-</script>
