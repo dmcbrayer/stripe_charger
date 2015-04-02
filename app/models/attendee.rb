@@ -60,8 +60,8 @@ class Attendee < ActiveRecord::Base
     token = Stripe::Token.create(
       card: {
         number: params[:number],
-        exp_month: params[:exp_month],
-        exp_year: params[:exp_year],
+        exp_month: exp_month_year_to_month(params[:exp_date]),
+        exp_year: exp_month_year_to_year(params[:exp_date]),
         cvc: params[:cvc]
       }
     )
@@ -102,5 +102,17 @@ class Attendee < ActiveRecord::Base
   def new_sign_up_message
     AttendeeMailer.new_sign_up_message(self).deliver
   end
+
+  private
+
+    def exp_month_year_to_month(monthyear)
+      month = monthyear.split(" / ").first
+      return month
+    end
+
+    def exp_month_year_to_year(monthyear)
+      year = monthyear.split(" / ").last
+      return year
+    end
 
 end

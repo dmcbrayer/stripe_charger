@@ -13,7 +13,6 @@
   <% end %>
 
   <%= hidden_field_tag :email %>
-
   <%= hidden_field_tag :token %>
 
   <div class="form-group">
@@ -57,12 +56,8 @@
 
   <div class="form-row">
     <div class="col-md-4" style="padding: 0.2em;">
-      <label>Expiration Month</label>
-      <%= text_field_tag :exp_month, nil, :class => "cc_expiry_month form-control" %>
-    </div>
-    <div class="col-md-4" style="padding: 0.2em;">
-      <label>Expiration Year</label>
-      <%= text_field_tag :exp_year, nil, :class => "cc_expiry_year form-control" %>
+      <label>Expiration Date</label>
+      <%= text_field_tag :exp_date, nil, :class => "cc_expiry form-control", :placeholder => "MM / YYYY" %>
     </div>
     <div class="col-md-4" style="padding: 0.2em;">
       <label>CVC</label>
@@ -80,7 +75,6 @@
       $("input.email").formance('validate_email');  // true
       $('input.credit_card_number').formance('format_credit_card_number');
       $('input.credit_card_cvc').formance('format_credit_card_cvc');
-      $('input.cc_expiry_month').formance('format_credit_card_cvc'); 
-      $('input.cc_expiry_year').formance('format_credit_card_cvc');
+      $('input.cc_expiry').formance('format_credit_card_expiry'); 
     });
 </script>
