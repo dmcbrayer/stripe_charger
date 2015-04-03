@@ -13,7 +13,6 @@
   <% end %>
 
   <%= hidden_field_tag :email %>
-
   <%= hidden_field_tag :token %>
 
   <div class="form-group">
@@ -57,12 +56,8 @@
 
   <div class="form-row">
     <div class="col-md-4" style="padding: 0.2em;">
-      <label>Expiration Month</label>
-      <%= text_field_tag :exp_month, nil, :class => "cc_expiry_month form-control" %>
-    </div>
-    <div class="col-md-4" style="padding: 0.2em;">
-      <label>Expiration Year</label>
-      <%= text_field_tag :exp_year, nil, :class => "cc_expiry_year form-control" %>
+      <label>Expiration Date</label>
+      <%= text_field_tag :credit_card_expiry, nil, :class => "credit_card_expiry form-control", :placeholder => "MM / YYYY" %>
     </div>
     <div class="col-md-4" style="padding: 0.2em;">
       <label>CVC</label>
@@ -75,12 +70,38 @@
 <% end %>
 
 <script>
-    $( function() {
-      $("input.phone_number").formance("format_phone_number"); // setup the formatter
-      $("input.email").formance('validate_email');  // true
-      $('input.credit_card_number').formance('format_credit_card_number');
-      $('input.credit_card_cvc').formance('format_credit_card_cvc');
-      $('input.cc_expiry_month').formance('format_credit_card_cvc'); 
-      $('input.cc_expiry_year').formance('format_credit_card_cvc');
-    });
+  jQuery(function($){
+      fields = ['credit_card_number',
+                'credit_card_expiry',
+                'credit_card_cvc',
+                'dd_mm_yyyy',
+                'yyyy_mm_dd',
+                'email',
+                'number',
+                'phone_number',
+                'postal_code',
+                'time_yy_mm']
+                
+        $.each( fields, function (index, value) {
+          $('input.'+value).formance('format_'+value)
+                           .addClass('form-control')
+                           .wrap('<div class=\'form-group\' />');
+
+          $('input.'+value).on('keyup change blur', function (value) {
+              return function (event) {
+                  $this = $(this);
+                  if ($this.formance('validate_'+value)) {
+                      $this.parent()
+                              .removeClass('has-success has-error')
+                              .addClass('has-success');
+                  } else {
+                      $this.parent()
+                              .removeClass('has-success has-error')
+                              .addClass('has-error');
+                  }
+              }
+          }(value));
+       });
+  });
 </script>
+

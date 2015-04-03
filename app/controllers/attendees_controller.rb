@@ -19,20 +19,22 @@ class AttendeesController < ApplicationController
   def create
     @attendee = @trip.attendees.new(attendee_params)
 
-    respond_to do |format|
+    if @attendee.valid?
       begin
-        if @attendee.charge_stripe(params[:amount], params)
-          flash[:success] = "You successfully signed up!"
-          @attendee.update(paid: true)
-          format.html { redirect_to root_url }
-        else
-          flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
-          format.html { render :new }
-        end
+        @attendee.charge_stripe(params[:amount], params)
       rescue Stripe::CardError => e
-        flash[:error] = e.message
-        # @attendee.update(card_error: true)
-        format.html {redirect_to trips_path }
+        flash.now[:danger] = e.message
+        render :new and return
+      end
+    end
+
+    respond_to do |format|
+      if @attendee.save
+        flash[:success] = "You successfully signed up!"
+        format.html { redirect_to root_url }
+      else
+        flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
+        format.html { render :new }
       end
     end
   end
