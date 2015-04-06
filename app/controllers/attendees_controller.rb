@@ -30,6 +30,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
+        @attendee.update(paid: true)
         flash[:success] = "You successfully signed up!"
         format.html { redirect_to root_url }
       else

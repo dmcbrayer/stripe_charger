@@ -31,10 +31,9 @@ class Attendee < ActiveRecord::Base
   end
 
   def create_stripe_customer(params, token)
-    puts params[:stripeToken]
     customer = Stripe::Customer.create(
-      description: "Hiker Meals Customer",
-      email: params[:email],
+      description: "Vestigo Customer",
+      email: params[:attendee][:email],
       card: token.id
     )
     self.update_attributes(customer_id: customer.id)

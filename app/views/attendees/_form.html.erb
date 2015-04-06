@@ -65,43 +65,62 @@
     </div>
   </div>
 
-  <%= f.submit "Sign me up!", :class => "btn btn-success btn-lg", :style => "width: 100%;" %>
+  <%= f.submit "Sign me up!", :class => "btn btn-success btn-lg", :id => "register", :style => "width: 100%;" %>
 
 <% end %>
 
 <script>
   jQuery(function($){
-      fields = ['credit_card_number',
-                'credit_card_expiry',
-                'credit_card_cvc',
-                'dd_mm_yyyy',
-                'yyyy_mm_dd',
-                'email',
-                'number',
-                'phone_number',
-                'postal_code',
-                'time_yy_mm']
-                
-        $.each( fields, function (index, value) {
-          $('input.'+value).formance('format_'+value)
-                           .addClass('form-control')
-                           .wrap('<div class=\'form-group\' />');
+    fields = ['credit_card_number',
+              'credit_card_expiry',
+              'credit_card_cvc',
+              'email',
+              'phone_number']
 
-          $('input.'+value).on('keyup change blur', function (value) {
-              return function (event) {
-                  $this = $(this);
-                  if ($this.formance('validate_'+value)) {
-                      $this.parent()
-                              .removeClass('has-success has-error')
-                              .addClass('has-success');
-                  } else {
-                      $this.parent()
-                              .removeClass('has-success has-error')
-                              .addClass('has-error');
-                  }
-              }
-          }(value));
-       });
+    $('#register').attr('disabled', 'disabled');
+
+    $.each( fields, function (index, value) {
+      $('input.'+value).formance('format_'+value)
+                         .addClass('form-control')
+                         .wrap('<div class=\'form-group\' />');
+
+      $('input.'+value).on('keyup change blur', function (value) {
+        return function (event) {
+          $this = $(this);
+          if ($this.formance('validate_'+value)) {
+              $this.parent()
+                      .removeClass('has-success has-error')
+                      .addClass('has-success');
+          } else {
+              $this.parent()
+                      .removeClass('has-success has-error')
+                      .addClass('has-error');
+
+          }
+        }
+      }(value));
+    });
   });
+</script>
+
+<script>
+
+  (function() {
+    $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name').keyup(function() {
+
+        var empty = false;
+        $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $('#register').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+        } else {
+            $('#register').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+        }
+    });
+  })()
 </script>
 
