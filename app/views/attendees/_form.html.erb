@@ -41,14 +41,14 @@
   <div class="form-group">
     <div class="col-md-8" style="padding: 0.2em;">
       <label>Card Number</label>
-      <%= text_field_tag :number, nil, :class => "credit_card_number form-control" %>
+      <%= text_field_tag :number, nil, :class => "credit_card_number form-control"%>
     </div>
     <div class="col-md-4" style="padding: 0.2em;">
       <label>Price</label>
       <% if @trip.custom? %>
-        <%= text_field_tag :amount, nil, :class => "form-control" %>
+        <%= text_field_tag :amount, nil, :class => "number form-control", :value => "#{@trip.price}.00"  %>
       <% else %>
-        <%= text_field_tag :amount, "$#{@trip.price}.00" , disabled: true, :class => "form-control" %>
+        <%= text_field_tag :fake_amount, "$#{@trip.price}.00" , disabled: true, :class => "number form-control" %>
         <%= hidden_field_tag :amount, @trip.price*100 %>
       <% end %>
     </div>
@@ -106,19 +106,19 @@
 <script>
 
   (function() {
-    $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name').keyup(function() {
+    $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name, #amount').keyup(function() {
 
         var empty = false;
-        $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name').each(function() {
+        $('#number, #credit_card_expiry, #cvc, #attendee_email, #attendee_phone, #attendee_name, #amount').each(function() {
             if ($(this).val() == '') {
                 empty = true;
             }
         });
 
         if (empty) {
-            $('#register').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+            $('#register').attr('disabled', 'disabled'); 
         } else {
-            $('#register').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
+            $('#register').removeAttr('disabled'); 
         }
     });
   })()

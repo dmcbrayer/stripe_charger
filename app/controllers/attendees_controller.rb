@@ -26,6 +26,9 @@ class AttendeesController < ApplicationController
         flash.now[:danger] = e.message
         render :new and return
       end
+    else
+      flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
+      render :new and return
     end
 
     respond_to do |format|
@@ -34,7 +37,7 @@ class AttendeesController < ApplicationController
         flash[:success] = "You successfully signed up!"
         format.html { redirect_to root_url }
       else
-        flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."
+        flash.now[:danger] = "Something went wrong with your registration."
         format.html { render :new }
       end
     end
