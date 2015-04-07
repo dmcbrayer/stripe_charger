@@ -25,6 +25,9 @@ class AttendeesController < ApplicationController
       rescue Stripe::CardError => e
         flash.now[:danger] = e.message
         render :new and return
+      rescue Stripe::InvalidRequestError => e
+        flash.now[:danger] = e.message
+        render :new and return
       end
     else
       flash.now[:danger] = "Something went wrong with your registration.  Don't worry, we didn't charge your card."

@@ -46,9 +46,11 @@ class Attendee < ActiveRecord::Base
       self.create_stripe_customer(params, token)
     end
 
+    amount_to_dollars = amount.to_i * 100
+
     charge = Stripe::Charge.create(
       customer: self.customer_id,
-      amount: amount,
+      amount: amount_to_dollars,
       description: "Vestigo Trip charge",
       currency: 'usd'
     )

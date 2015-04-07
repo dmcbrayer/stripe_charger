@@ -46,7 +46,7 @@
     <div class="col-md-4" style="padding: 0.2em;">
       <label>Price</label>
       <% if @trip.custom? %>
-        <%= text_field_tag :amount, nil, :class => "number form-control", :value => "#{@trip.price}.00"  %>
+        <%= text_field_tag :amount, nil, :class => "number form-control"%>
       <% else %>
         <%= text_field_tag :fake_amount, "$#{@trip.price}.00" , disabled: true, :class => "number form-control" %>
         <%= hidden_field_tag :amount, @trip.price*100 %>
