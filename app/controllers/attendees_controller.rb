@@ -19,6 +19,10 @@ class AttendeesController < ApplicationController
   def create
     @attendee = @trip.attendees.new(attendee_params)
 
+    if @trip.custom?
+      params[:amount] = params[:amount] * 100
+    end
+
     if @attendee.valid?
       begin
         @attendee.charge_stripe(params[:amount], params)
