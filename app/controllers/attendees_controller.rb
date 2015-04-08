@@ -20,7 +20,7 @@ class AttendeesController < ApplicationController
     @attendee = @trip.attendees.new(attendee_params)
 
     if @trip.custom?
-      params[:amount] = params[:amount] * 100
+      params[:amount] = params[:amount].to_i * 100
     end
 
     if @attendee.valid?
