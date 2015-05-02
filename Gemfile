@@ -19,6 +19,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'unicorn'
 gem 'mandrill-api', require: "mandrill"
 gem 'newrelic_rpm'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :production do
   gem 'pg'
