@@ -7,7 +7,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
     </tr>
   </thead>
 
@@ -15,7 +14,6 @@
     <% @leaders.each do |leader| %>
       <tr>
         <td><%= link_to leader.name, leader %></td>
-        <td><%= leader.email %></td>
       </tr>
     <% end %>
   </tbody>

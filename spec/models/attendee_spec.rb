@@ -117,7 +117,9 @@ RSpec.describe Attendee, :type => :model do
 		end
 
 		describe "when card information is invalid" do
-			pending
+			it "returns an error" do
+				pending
+			end
 		end
 	end
 end

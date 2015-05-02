@@ -20,8 +20,9 @@ class Trip < ActiveRecord::Base
 	validates :title, presence: true
 	validates :leader, presence: true
 	validates :price, presence: true
-
-	default_scope -> { order(:start_date => :asc) }
+	
+  default_scope -> {where( 'start_date > ?', Date.today - 1).all}
+  default_scope -> { order(:start_date => :asc)}
 
 	def get_leader
 		Leader.find(self.leader)
