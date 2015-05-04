@@ -1,46 +1,28 @@
 <% provide(:title, @trip.title) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @trip.title %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3><%= @trip.title %></h3>
+    <h4><%= link_to @leader.name, @leader %></h4>
+    <% if @trip.start_date? && @trip.end_date? %>
+      <p> From <%= @trip.start_date.strftime("%B %d, %Y") %> to <%= @trip.end_date.strftime("%B %d, %Y") %>.</p>
+    <% else %>
+      <p>Dates TBD</p>
+    <% end %>
+    <h4><strong>Price: </strong>$<%= @trip.price %></h4>
+  </div>
 
-<p>
-  <strong>Leader:</strong>
-  <%= link_to @leader.name, @leader %>
-</p>
+  <div class="panel-body">
+    <% if @trip.description %>
+      <p><%= @trip.description %></p>
+    <% else %>
+      <p>Looks like we don't have a description for this trip.  That's okay!  It's still real!  You should be able to find any details at <a href="http://vestigo.co">vestigo.co</a> and if you have any questions feel free to email us at <a href="mailto:issues@vestigo.co">issues@vestigo.co</a></p>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @trip.price %>
-</p>
 
-<p>
-  <strong>Start Date:</strong>
-  <% if @trip.start_date? %>
-    <%= @trip.start_date.strftime("%B %d, %Y") %>
-  <% else %>
-    TBD  
-  <% end %>
-</p>
-
-<p>
-  <strong>End Date:</strong>
-  <% if @trip.end_date? %>
-    <%= @trip.end_date.strftime("%B %d, %Y") %>
-  <% else %>
-    TBD
-  <% end %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @trip.description %>
-</p>
-
-<%= link_to 'Sign Up', new_trip_attendee_path(@trip), class: 'btn btn-default' %> <br>
-
-<%= link_to 'Back', trips_path %> <br>
+<%= link_to 'Sign Up Now', new_trip_attendee_path(@trip), class: 'btn btn-success' %>  <%= link_to 'Back to Trips', trips_path, class: 'btn btn-danger' %> <br>
 
 <% if @trip_attendees.any? %>
   <h3>Attendees</h3>

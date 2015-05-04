@@ -1,11 +1,6 @@
 <% provide(:title, @leader.name) %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @leader.name %>
-</p>
+<h1><%= @leader.name %><small> in the house</small></h1>
 
 
-<%= link_to 'Back', leaders_path %>
+<%= link_to 'Back to Leaders', leaders_path, class: "btn btn-danger" %>
