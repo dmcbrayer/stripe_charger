@@ -2,16 +2,17 @@
 #
 # Table name: trips
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  leader      :integer
-#  start_date  :date
-#  end_date    :date
-#  price       :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  description :text
-#  custom      :boolean          default(FALSE)
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  leader       :integer
+#  start_date   :date
+#  end_date     :date
+#  price        :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#  description  :text
+#  custom       :boolean          default(FALSE)
+#  private_trip :boolean          default(FALSE)
 #
 
 require 'rails_helper'
@@ -32,6 +33,7 @@ RSpec.describe Trip, :type => :model do
 		it {is_expected.to respond_to(:start_date)}
 		it {is_expected.to respond_to(:end_date)}
 		it {is_expected.to respond_to(:custom)}
+		it {is_expected.to respond_to(:private_trip)}
 
 		it {is_expected.to be_valid}
 	end
@@ -58,9 +60,15 @@ RSpec.describe Trip, :type => :model do
 		end
 	end
 
-	describe "custom" do
+	describe "#custom" do
 		it "should default to false" do
 			expect(@trip.custom).to eq(false)
+		end
+	end
+
+	describe "#private_trip" do
+		it "should default to false" do
+			expect(@trip.private_trip).to eq(false)
 		end
 	end
 

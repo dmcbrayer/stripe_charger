@@ -2,15 +2,16 @@
 #
 # Table name: attendees
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  phone      :string(255)
-#  trip_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  paid       :boolean          default(FALSE)
-#  card_error :boolean          default(FALSE)
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  email       :string(255)
+#  phone       :string(255)
+#  trip_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  paid        :boolean          default(FALSE)
+#  card_error  :boolean          default(FALSE)
+#  customer_id :string(255)
 #
 
 require 'rails_helper'

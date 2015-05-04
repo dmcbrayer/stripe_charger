@@ -6,7 +6,7 @@ RSpec.describe AttendeeMailer, :type => :mailer do
   	let(:trip) {FactoryGirl.create :trip}
   	let(:attendee) {trip.attendees.create(FactoryGirl.attributes_for :attendee)}
 
-  	describe 'first message /' do
+  	describe 'first message' do
   		let(:mail) {AttendeeMailer.first_message(attendee)}
 
   		it 'renders the subject' do
@@ -54,5 +54,21 @@ RSpec.describe AttendeeMailer, :type => :mailer do
   	describe 'attendee email' do
   		pending #some code that takes Mandrill's API into account
   	end
+
+    describe 'private trip' do
+      let(:mail) {AttendeeMailer.private_trip_message(trip)}
+
+      it 'renders the mail to me and marshall' do
+        pending
+      end
+
+      it 'sends from private-trips' do
+        expect(mail.from).to eql(['private-trips@vestigo.co'])
+      end
+
+      it 'contains the right content' do
+        pending
+      end
+    end
   end
 end
