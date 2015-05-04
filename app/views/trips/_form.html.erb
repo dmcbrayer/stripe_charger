@@ -1,4 +1,4 @@
-<%= form_for(@trip) do |f| %>
+<%= form_for(@trip), :html=> {:id => 'attendee-signup-form'} do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
@@ -36,3 +36,8 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  var form = document.getElementById('attendee-signup-form');
+  analytics.trackForm(form, 'Attendee Signup');
+</script>
