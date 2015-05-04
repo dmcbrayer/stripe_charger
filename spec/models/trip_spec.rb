@@ -23,6 +23,10 @@ RSpec.describe Trip, :type => :model do
 		@trip = FactoryGirl.create(:trip)
 	end
 
+	after(:each) do
+		ActionMailer::Base.deliveries.clear
+	end
+
 	describe "Model set up" do
 
 		subject {@trip}
@@ -69,6 +73,10 @@ RSpec.describe Trip, :type => :model do
 	describe "#private_trip" do
 		it "should default to false" do
 			expect(@trip.private_trip).to eq(false)
+		end
+
+		it "should send an email after creating a private_trip" do
+			expect{FactoryGirl.create(:trip, private_trip: true)}.to change { ActionMailer::Base.deliveries.count }.by(1)
 		end
 	end
 

@@ -54,21 +54,5 @@ RSpec.describe AttendeeMailer, :type => :mailer do
   	describe 'attendee email' do
   		pending #some code that takes Mandrill's API into account
   	end
-
-    describe 'private trip' do
-      let(:mail) {AttendeeMailer.private_trip_message(trip)}
-
-      it 'renders the mail to me and marshall' do
-        pending
-      end
-
-      it 'sends from private-trips' do
-        expect(mail.from).to eql(['private-trips@vestigo.co'])
-      end
-
-      it 'contains the right content' do
-        pending
-      end
-    end
   end
 end

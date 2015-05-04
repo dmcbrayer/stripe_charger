@@ -48,17 +48,17 @@ RSpec.describe Attendee, :type => :model do
 		end
 
 		it "should be sent from the correct address" do
-			expect(ActionMailer::Base.deliveries.first.from).to eql(['no-reply@vestigo.co'])
+			expect(ActionMailer::Base.deliveries.last.from).to eql(['no-reply@vestigo.co'])
 		end
 
 		describe "correct email gets sent" do
 			it "sends first message for the first attendee" do
-				expect(ActionMailer::Base.deliveries.first.subject).to include("First sign up")
+				expect(ActionMailer::Base.deliveries.last.subject).to include("First sign up")
 			end
 
 			it "sends the new sign up message for subsequent attendees" do
 				attendee2 = @trip.attendees.create(FactoryGirl.attributes_for(:attendee))
-				expect(ActionMailer::Base.deliveries[1].subject).to include("New sign up")
+				expect(ActionMailer::Base.deliveries[2].subject).to include("New sign up")
 			end
 		end
 	end

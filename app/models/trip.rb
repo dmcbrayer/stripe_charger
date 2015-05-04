@@ -26,7 +26,13 @@ class Trip < ActiveRecord::Base
   default_scope -> { where( 'start_date > ?', Date.today - 1).all}
   default_scope -> { order(:start_date => :asc)}
 
+  after_create :notify_of_private
+
 	def get_leader
 		Leader.find(self.leader)
 	end
+
+  def notify_of_private
+    TripMailer.notify_admin(self).deliver
+  end
 end
