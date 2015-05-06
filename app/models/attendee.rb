@@ -17,6 +17,7 @@
 class Attendee < ActiveRecord::Base
 	belongs_to :trip
 
+  #these are the model validations
   validates :name, presence: true
   validates :email, presence: true
   validates :phone, presence: true
