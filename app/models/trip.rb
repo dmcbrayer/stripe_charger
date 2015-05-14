@@ -32,6 +32,8 @@ class Trip < ActiveRecord::Base
 	end
 
   def notify_of_private
-    TripMailer.notify_admin(self).deliver
+    if self.private_trip?
+      TripMailer.notify_admin(self).deliver
+    end
   end
 end
